@@ -1,0 +1,405 @@
+Employee ID,Store ID,Name,Position
+1,1,Stephen Johnson,Store Manager
+2,1,Rebecca Myers,Assistant Manager
+3,1,Katherine Buchanan,Cashier
+4,1,Jessica Hicks,Stock Clerk
+5,1,Ryan Gross,Sales Associate
+6,1,Jeffery Carlson,Sales Associate
+7,1,Melissa Wilson,Sales Associate
+8,1,Edward Hicks,Sales Associate
+9,1,Shari Jordan,Sales Associate
+10,1,Mrs. Melissa Caldwell DDS,Sales Associate
+11,1,Regina Nelson,Sales Associate
+12,1,Kevin Dawson,Sales Associate
+13,1,Nicole Murphy,Sales Associate
+14,2,Susan Brown,Store Manager
+15,2,Sean Miller,Assistant Manager
+16,2,Christopher Dominguez,Cashier
+17,2,Lisa Mason,Stock Clerk
+18,2,David Pitts,Sales Associate
+19,2,Lance Schultz,Sales Associate
+20,2,Caroline Hall,Sales Associate
+21,2,Heather Wilson,Sales Associate
+22,2,Allison Young,Sales Associate
+23,2,Kathleen Thomas,Sales Associate
+24,2,Carl Walters,Sales Associate
+25,3,Kevin Douglas,Store Manager
+26,3,Stephanie Larson,Assistant Manager
+27,3,Andrew Thompson,Cashier
+28,3,Erica Davis,Stock Clerk
+29,3,Cynthia Serrano,Sales Associate
+30,3,Brittany Gonzalez,Sales Associate
+31,3,Patrick Simmons,Sales Associate
+32,3,Jennifer Johnson,Sales Associate
+33,3,Lynn Torres,Sales Associate
+34,3,Adam Long,Sales Associate
+35,3,Christopher Willis,Sales Associate
+36,3,Zachary Leonard,Sales Associate
+37,4,Justin Johnson,Store Manager
+38,4,Michael Lewis,Assistant Manager
+39,4,Kevin Chapman,Cashier
+40,4,Christopher Garrett,Stock Clerk
+41,4,Jonathan Cooley,Sales Associate
+42,4,Christine Garner,Sales Associate
+43,4,Joshua Sharp,Sales Associate
+44,4,Laura Whitehead,Sales Associate
+45,4,Jeremy Wolfe,Sales Associate
+46,4,Denise Harmon,Sales Associate
+47,4,Allen Fischer,Sales Associate
+48,4,Robert Price,Sales Associate
+49,4,Victoria Parker,Sales Associate
+50,5,Brandon Allen,Store Manager
+51,5,Matthew Klein,Assistant Manager
+52,5,Richard Miller,Cashier
+53,5,Teresa Wise,Stock Clerk
+54,5,Ronald Shannon,Sales Associate
+55,5,Kayla Hernandez,Sales Associate
+56,5,Ariel Morse,Sales Associate
+57,5,Kevin Stevens,Sales Associate
+58,5,Austin Bonilla,Sales Associate
+59,5,Larry Gutierrez,Sales Associate
+60,5,John Garza,Sales Associate
+61,5,Ruth Smith,Sales Associate
+62,6,张婷,Store Manager
+63,6,唐宇,Assistant Manager
+64,6,谢芳,Cashier
+65,6,王坤,Stock Clerk
+66,6,莫凤英,Sales Associate
+67,6,农健,Sales Associate
+68,6,罗彬,Sales Associate
+69,6,梁欣,Sales Associate
+70,6,蒋坤,Sales Associate
+71,6,李淑英,Sales Associate
+72,6,黄想,Sales Associate
+73,7,李瑜,Store Manager
+74,7,陈帅,Assistant Manager
+75,7,欧玉,Cashier
+76,7,林涛,Stock Clerk
+77,7,孔桂香,Sales Associate
+78,7,杨琳,Sales Associate
+79,7,黄华,Sales Associate
+80,7,何兰英,Sales Associate
+81,7,张杰,Sales Associate
+82,7,应小红,Sales Associate
+83,7,林淑英,Sales Associate
+84,7,唐旭,Sales Associate
+85,7,刘宁,Sales Associate
+86,8,邱桂珍,Store Manager
+87,8,夏红霞,Assistant Manager
+88,8,胡秀云,Cashier
+89,8,刘建,Stock Clerk
+90,8,胡秀云,Sales Associate
+91,8,周秀兰,Sales Associate
+92,8,汤建华,Sales Associate
+93,8,夏艳,Sales Associate
+94,8,杨凤英,Sales Associate
+95,8,李建国,Sales Associate
+96,8,李玉兰,Sales Associate
+97,8,郑琳,Sales Associate
+98,8,郭海燕,Sales Associate
+99,9,王晨,Store Manager
+100,9,石春梅,Assistant Manager
+101,9,李帅,Cashier
+102,9,史荣,Stock Clerk
+103,9,陈淑英,Sales Associate
+104,9,刘宁,Sales Associate
+105,9,许冬梅,Sales Associate
+106,9,胡婷,Sales Associate
+107,9,易玉,Sales Associate
+108,9,林玉,Sales Associate
+109,9,詹淑华,Sales Associate
+110,9,岳金凤,Sales Associate
+111,10,苏萍,Store Manager
+112,10,吴建平,Assistant Manager
+113,10,余建华,Cashier
+114,10,冷成,Stock Clerk
+115,10,梁秀云,Sales Associate
+116,10,李玲,Sales Associate
+117,10,王柳,Sales Associate
+118,10,贾淑英,Sales Associate
+119,10,查帅,Sales Associate
+120,10,刘宁,Sales Associate
+121,10,刘阳,Sales Associate
+122,10,王建平,Sales Associate
+123,10,童淑英,Sales Associate
+124,11,Hansjoachim Nette-Bolnbach,Store Manager
+125,11,Drago Hornig,Assistant Manager
+126,11,Janusz Schmiedecke B.Sc.,Cashier
+127,11,Dr. Gilbert Trommler B.A.,Stock Clerk
+128,11,Desiree Warmer-Wähner,Sales Associate
+129,11,Reingard Jacobi Jäckel,Sales Associate
+130,11,Univ.Prof. Ditmar Scheuermann B.Eng.,Sales Associate
+131,11,Frieda Geisler,Sales Associate
+132,11,Herr Hellmut Kraus,Sales Associate
+133,11,Hannes Biggen,Sales Associate
+134,11,Meinhard Linke,Sales Associate
+135,11,Isabelle Hauffer,Sales Associate
+136,12,Sibel Siering-Ullmann,Store Manager
+137,12,Frau Annelise Blümel,Assistant Manager
+138,12,Dr. Tim Henschel,Cashier
+139,12,Gerta Blümel,Stock Clerk
+140,12,Dr. Diane Oestrovsky,Sales Associate
+141,12,Wanda Stumpf,Sales Associate
+142,12,Dagmar Dehmel-Kusch,Sales Associate
+143,12,Harold Preiß,Sales Associate
+144,12,Heike Römer,Sales Associate
+145,12,Elisa Junck B.Sc.,Sales Associate
+146,12,Dr. Anita Seifert MBA.,Sales Associate
+147,12,Pero Birnbaum B.A.,Sales Associate
+148,12,Ellen Etzler,Sales Associate
+149,13,Claas Kruschwitz-Wilms,Store Manager
+150,13,Selma Jessel,Assistant Manager
+151,13,Dr. Ekrem Trub,Cashier
+152,13,Denny Häring,Stock Clerk
+153,13,Valeri Gute,Sales Associate
+154,13,Gunnar Kambs,Sales Associate
+155,13,Stjepan Adler B.Eng.,Sales Associate
+156,13,Univ.Prof. Reinald Becker MBA.,Sales Associate
+157,13,Inka Etzold B.A.,Sales Associate
+158,13,Gülten Sauer B.Eng.,Sales Associate
+159,13,Rosina Albers,Sales Associate
+160,13,Kathleen Kobelt B.A.,Sales Associate
+161,14,Jaroslaw Gute-Schäfer,Store Manager
+162,14,Dr. Janus Hellwig MBA.,Assistant Manager
+163,14,Hanne Zimmer-Blümel,Cashier
+164,14,Ann-Kathrin Lindner-Preiß,Stock Clerk
+165,14,Dipl.-Ing. Andree Lindau B.A.,Sales Associate
+166,14,Tatjana Rudolph,Sales Associate
+167,14,Jenny Ritter,Sales Associate
+168,14,Maya Mangold B.Sc.,Sales Associate
+169,14,Bärbel Reising B.A.,Sales Associate
+170,14,Ing. Eckehard Stahr,Sales Associate
+171,14,Prof. Tilo Zirme B.A.,Sales Associate
+172,15,Hubertine Sager-Hamann,Store Manager
+173,15,Prof. Kata Lübs B.Sc.,Assistant Manager
+174,15,Vinko Weinhage,Cashier
+175,15,Univ.Prof. Samira Hamann B.Eng.,Stock Clerk
+176,15,Baptist Girschner,Sales Associate
+177,15,Aloisia Schlosser B.A.,Sales Associate
+178,15,Univ.Prof. Hans-Theo Möchlichen,Sales Associate
+179,15,Albin Henck MBA.,Sales Associate
+180,15,Dr. Friedrich-Wilhelm Linke MBA.,Sales Associate
+181,15,Rosl Budig,Sales Associate
+182,15,Miguel Junk,Sales Associate
+183,15,Jonas Rosemann,Sales Associate
+184,15,Helmut Paffrath,Sales Associate
+185,16,Jeff Wiggins,Store Manager
+186,16,Nancy Butler,Assistant Manager
+187,16,Kevin Fields,Cashier
+188,16,Jared Daniels,Stock Clerk
+189,16,Angela Chapman,Sales Associate
+190,16,Annette Morgan,Sales Associate
+191,16,Christina Mccarthy,Sales Associate
+192,16,Kristina Mitchell,Sales Associate
+193,16,Sylvia Austin,Sales Associate
+194,16,Brent Oneill,Sales Associate
+195,17,Robert Oliver,Store Manager
+196,17,Joshua Hansen,Assistant Manager
+197,17,Richard Parks,Cashier
+198,17,Kenneth Dunn,Stock Clerk
+199,17,Jonathan Ryan,Sales Associate
+200,17,Mary Lee,Sales Associate
+201,17,Adam Lopez,Sales Associate
+202,17,Laura Bradley,Sales Associate
+203,17,Laura Baldwin,Sales Associate
+204,17,Karla Rasmussen,Sales Associate
+205,17,Michael Valenzuela,Sales Associate
+206,17,Paul Kemp,Sales Associate
+207,18,Cindy Anderson,Store Manager
+208,18,John Foley,Assistant Manager
+209,18,Anthony Sanders,Cashier
+210,18,Keith Small,Stock Clerk
+211,18,Lisa Jimenez,Sales Associate
+212,18,Allison Taylor,Sales Associate
+213,18,Jonathan Hill,Sales Associate
+214,18,Christina Cisneros,Sales Associate
+215,18,Sarah Moreno,Sales Associate
+216,18,Jake Moore,Sales Associate
+217,19,Wesley Hardin,Store Manager
+218,19,John Ray,Assistant Manager
+219,19,Kyle Black,Cashier
+220,19,Kelly Day,Stock Clerk
+221,19,Brenda Williams,Sales Associate
+222,19,Michael Gardner,Sales Associate
+223,19,Bob Hoffman,Sales Associate
+224,19,Nicole Rice,Sales Associate
+225,19,Maria Hunter,Sales Associate
+226,19,David Hartman,Sales Associate
+227,19,Cheyenne Mann,Sales Associate
+228,19,Monica Moran,Sales Associate
+229,20,John Greene,Store Manager
+230,20,Carol Cox,Assistant Manager
+231,20,John Bailey,Cashier
+232,20,Donald Griffin,Stock Clerk
+233,20,Michael Clayton,Sales Associate
+234,20,Austin Baker,Sales Associate
+235,20,Alexander Baker MD,Sales Associate
+236,20,Briana Moss,Sales Associate
+237,20,Sergio Hoover,Sales Associate
+238,20,Angela Turner,Sales Associate
+239,21,Alexandria Ribeiro,Store Manager
+240,21,Lucy Lebon de Grenier,Assistant Manager
+241,21,Henriette Pierre,Cashier
+242,21,Patrick Bonnin de Rodrigues,Stock Clerk
+243,21,David Sauvage,Sales Associate
+244,21,Philippe Ferrand-Nguyen,Sales Associate
+245,21,Virginie Sanchez,Sales Associate
+246,21,Robert Noël,Sales Associate
+247,21,Matthieu Normand,Sales Associate
+248,21,Bernard Bertrand,Sales Associate
+249,22,Frédérique Barthelemy,Store Manager
+250,22,Augustin Chevallier,Assistant Manager
+251,22,Maggie Lagarde-Fernandez,Cashier
+252,22,Bernadette Bouvier,Stock Clerk
+253,22,Laurence Traore,Sales Associate
+254,22,Julien Da Silva,Sales Associate
+255,22,Vincent Mary,Sales Associate
+256,22,Isaac Boulanger de la Laine,Sales Associate
+257,22,Josette Carre,Sales Associate
+258,22,Franck Marie,Sales Associate
+259,23,Luc Rocher du Berger,Store Manager
+260,23,Nicolas Didier,Assistant Manager
+261,23,Hugues Rémy,Cashier
+262,23,Maryse Maillet,Stock Clerk
+263,23,Dominique Pichon,Sales Associate
+264,23,Guillaume Hebert,Sales Associate
+265,23,René Robert,Sales Associate
+266,23,Patrick-Jacques Lemoine,Sales Associate
+267,23,Adrien-Robert Simon,Sales Associate
+268,23,Luc Maillot,Sales Associate
+269,23,Alexandre Paris de la Pages,Sales Associate
+270,24,Suzanne Godard de Grondin,Store Manager
+271,24,Capucine Chartier-Bertin,Assistant Manager
+272,24,Yves de Didier,Cashier
+273,24,Nathalie-Christelle Germain,Stock Clerk
+274,24,Charles Bertin,Sales Associate
+275,24,Alexandria Renaud,Sales Associate
+276,24,Claire Laurent-Benoit,Sales Associate
+277,24,Thibaut Lacombe du Guillaume,Sales Associate
+278,24,Arthur Hamon,Sales Associate
+279,24,Éléonore Gilles de Adam,Sales Associate
+280,24,Robert Guilbert,Sales Associate
+281,25,Bernard Camus,Store Manager
+282,25,Alexandre Bourdon Le Leroy,Assistant Manager
+283,25,Zacharie Lefèvre,Cashier
+284,25,Lucie Dijoux,Stock Clerk
+285,25,Capucine Rousseau,Sales Associate
+286,25,Christine Lopez-Bègue,Sales Associate
+287,25,Maurice Leduc-Picard,Sales Associate
+288,25,Alice Lagarde,Sales Associate
+289,25,Hélène Marchand-Lelièvre,Sales Associate
+290,25,Astrid Jourdan de Parent,Sales Associate
+291,25,Émile Schneider,Sales Associate
+292,25,Benjamin Dupuis,Sales Associate
+293,26,Abigaíl Macarena Báez Solsona,Store Manager
+294,26,Noé Carretero-Cervantes,Assistant Manager
+295,26,Víctor Palomar Terrón,Cashier
+296,26,Emelina del Castillo,Stock Clerk
+297,26,Anunciación Arnau,Sales Associate
+298,26,Danilo Vera Peiró,Sales Associate
+299,26,José Manuel Valera-Villaverde,Sales Associate
+300,26,Lourdes Cabañas,Sales Associate
+301,26,René Castell-Falcó,Sales Associate
+302,26,Dani de Alegria,Sales Associate
+303,27,Gisela Pavón Bou,Store Manager
+304,27,Paula de Armengol,Assistant Manager
+305,27,Federico Blazquez Rivero,Cashier
+306,27,Martina Revilla Pou,Stock Clerk
+307,27,Aurora del Mur,Sales Associate
+308,27,Augusto Montesinos Andrade,Sales Associate
+309,27,Urbano Jover Aznar,Sales Associate
+310,27,Pablo Villalonga,Sales Associate
+311,27,Antonia Paola Molins Ropero,Sales Associate
+312,27,Horacio de Pinedo,Sales Associate
+313,27,Jordán Carballo,Sales Associate
+314,27,Rolando Pagès Gargallo,Sales Associate
+315,28,Febe Gual Manzano,Store Manager
+316,28,Evaristo Rosado,Assistant Manager
+317,28,Pilar del Arjona,Cashier
+318,28,Graciana Gisbert Gámez,Stock Clerk
+319,28,Felipe Amorós Sánchez,Sales Associate
+320,28,Renata Flores Bustos,Sales Associate
+321,28,Dionisio Yáñez,Sales Associate
+322,28,Aitor Lledó-Álamo,Sales Associate
+323,28,Itziar Aguilera Puente,Sales Associate
+324,28,Emiliano Vázquez Moliner,Sales Associate
+325,29,Custodia Torrens Novoa,Store Manager
+326,29,Máximo Chus Rosa Céspedes,Assistant Manager
+327,29,Leire Vega,Cashier
+328,29,Isaac Plaza Valenciano,Stock Clerk
+329,29,Felisa Gaya Díaz,Sales Associate
+330,29,Felicia del Gomila,Sales Associate
+331,29,Armida Bou Ferrández,Sales Associate
+332,29,Kike Blasco Ramis,Sales Associate
+333,29,Rafael Zurita Crespo,Sales Associate
+334,29,Primitivo Nogués Padilla,Sales Associate
+335,29,Eusebia Manuel Mancebo,Sales Associate
+336,30,Judith Amelia Bustos Niño,Store Manager
+337,30,Susana Borrell Sedano,Assistant Manager
+338,30,Poncio Rosselló Balaguer,Cashier
+339,30,Dorotea Román Abril,Stock Clerk
+340,30,Tecla Jódar-Baquero,Sales Associate
+341,30,Artemio Mate Ríos,Sales Associate
+342,30,Vinicio Barceló Marín,Sales Associate
+343,30,Leonor Yuste Hoz,Sales Associate
+344,30,Laura Sánchez,Sales Associate
+345,30,Claudio Lago,Sales Associate
+346,30,Jose Luis Acevedo Fuertes,Sales Associate
+347,30,Artemio Roselló Calvet,Sales Associate
+348,31,Iara-Mariana Teixeira,Store Manager
+349,31,Ricardo Sá,Assistant Manager
+350,31,Joana Rodrigues,Cashier
+351,31,Noah Azevedo,Stock Clerk
+352,31,Vitória Amorim,Sales Associate
+353,31,Érica Reis,Sales Associate
+354,31,Isabela Cruz,Sales Associate
+355,31,Eduarda Assunção,Sales Associate
+356,31,Yasmin Pacheco-Rocha,Sales Associate
+357,31,Jéssica Antunes-Ramos,Sales Associate
+358,31,Vasco Costa,Sales Associate
+359,31,Diego Araújo,Sales Associate
+360,31,Soraia Miranda,Sales Associate
+361,32,Iara Soares,Store Manager
+362,32,Soraia Batista-Maia,Assistant Manager
+363,32,Rui Macedo-Assunção,Cashier
+364,32,Lia Carneiro,Stock Clerk
+365,32,Fabiana Leite-Lima,Sales Associate
+366,32,Jorge Morais,Sales Associate
+367,32,Afonso Cunha,Sales Associate
+368,32,Joaquim Valente,Sales Associate
+369,32,Fernando Vicente,Sales Associate
+370,32,Diogo Morais,Sales Associate
+371,33,Larissa Carvalho,Store Manager
+372,33,Kevin Vaz,Assistant Manager
+373,33,Ismael Barros,Cashier
+374,33,Alexandre Guerreiro,Stock Clerk
+375,33,Daniela do Pires,Sales Associate
+376,33,Kyara Lima,Sales Associate
+377,33,Eduarda Ribeiro,Sales Associate
+378,33,Bruno Santos,Sales Associate
+379,33,Vítor Henriques,Sales Associate
+380,33,Santiago Melo,Sales Associate
+381,33,Nelson Neto,Sales Associate
+382,33,Lourenço Nunes-Azevedo,Sales Associate
+383,34,Lucas Amorim,Store Manager
+384,34,Fernando Martins,Assistant Manager
+385,34,Nádia Anjos,Cashier
+386,34,Rafaela Vieira,Stock Clerk
+387,34,Sofia Rocha-Rocha,Sales Associate
+388,34,Mário Ferreira,Sales Associate
+389,34,Tiago Figueiredo,Sales Associate
+390,34,Luciana Gonçalves,Sales Associate
+391,34,Guilherme Loureiro,Sales Associate
+392,34,Letícia Antunes,Sales Associate
+393,34,Leandro Jesus,Sales Associate
+394,34,Valentim Domingues,Sales Associate
+395,35,Bruna da Almeida,Store Manager
+396,35,Tomé Araújo,Assistant Manager
+397,35,Teresa Freitas,Cashier
+398,35,Adriana-Margarida Figueiredo,Stock Clerk
+399,35,Kévim Figueiredo,Sales Associate
+400,35,Henrique Amaral,Sales Associate
+401,35,Brian Rocha,Sales Associate
+402,35,Matilde Campos,Sales Associate
+403,35,Emanuel Marques,Sales Associate
+404,35,Violeta Gonçalves,Sales Associate

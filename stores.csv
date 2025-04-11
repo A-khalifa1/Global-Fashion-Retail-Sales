@@ -1,0 +1,36 @@
+Store ID,Country,City,Store Name,Number of Employees,ZIP Code,Latitude,Longitude
+1,United States,New York,Store New York,10,10001,40.7128,-74.006
+2,United States,Los Angeles,Store Los Angeles,8,90001,34.0522,-118.2437
+3,United States,Chicago,Store Chicago,9,60601,41.8781,-87.6298
+4,United States,Houston,Store Houston,10,77001,29.7604,-95.3698
+5,United States,Phoenix,Store Phoenix,9,85001,33.4484,-112.074
+6,Zhongguo,Shanghai,Store Shanghai,8,200000,31.2304,121.4737
+7,Zhongguo,Beijing,Store Beijing,10,100000,39.9042,116.4074
+8,Zhongguo,Guangzhou,Store Guangzhou,10,510000,23.1291,113.2644
+9,Zhongguo,Shenzhen,Store Shenzhen,9,518000,22.5429,114.0596
+10,Zhongguo,Chongqing,Store Chongqing,10,400000,29.5638,106.5505
+11,Deutschland,Berlin,Store Berlin,9,10115,52.5125,13.3903
+12,Deutschland,Hamburg,Store Hamburg,10,20095,53.5503,9.992
+13,Deutschland,Muenchen,Store Muenchen,9,80331,48.1371,11.5763
+14,Deutschland,Koeln,Store Koeln,8,50667,50.938,6.9578
+15,Deutschland,Frankfurt am Main,Store Frankfurt am Main,10,60311,50.1145,8.6785
+16,United Kingdom,London,Store London,7,EC2P 2E,51.5072,-0.1275
+17,United Kingdom,Birmingham,Store Birmingham,9,B1 1AA,52.4862,-1.8904
+18,United Kingdom,Glasgow,Store Glasgow,7,G1 1AA,55.858,-4.259
+19,United Kingdom,Liverpool,Store Liverpool,9,L1 1AA,53.4084,-2.9916
+20,United Kingdom,Bristol,Store Bristol,7,BS1 1AA,51.4545,-2.5879
+21,France,Paris,Store Paris,7,75000,48.8656,2.343
+22,France,Marseille,Store Marseille,7,13000,43.2965,5.3698
+23,France,Lyon,Store Lyon,8,69000,45.764,4.8357
+24,France,Toulouse,Store Toulouse,8,31000,43.6047,1.4442
+25,France,Nice,Store Nice,9,06000,43.7,7.2684
+26,Espana,Madrid,Store Madrid,7,28001,40.438,-3.6905
+27,Espana,Barcelona,Store Barcelona,9,08001,41.387,2.1682
+28,Espana,Valencia,Store Valencia,7,46001,39.4693,-0.3766
+29,Espana,Sevilla,Store Sevilla,8,41001,37.3906,-5.9879
+30,Espana,Zaragoza,Store Zaragoza,9,50001,41.6419,-0.9046
+31,Portugal,Lisboa,Store Lisboa,10,1000-001,38.7167,-9.1333
+32,Portugal,Porto,Store Porto,7,4000-001,41.1496,-8.611
+33,Portugal,Braga,Store Braga,9,4700-001,41.5503,-8.4201
+34,Portugal,Guimaraes,Store Guimaraes,9,4800-001,41.4444,-8.2962
+35,Portugal,Coimbra,Store Coimbra,7,3000-001,40.2056,-8.4196
