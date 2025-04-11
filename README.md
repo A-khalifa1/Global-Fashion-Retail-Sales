@@ -15,6 +15,9 @@ The goal is to build a dual-pipeline system that:
 - Handles **live transaction data** for real-time monitoring.
 - Presents both views via **dedicated dashboards**.
 
+
+  Global-Fashion-Retail-Sales/diagram.png
+
 ---
 
 ## 🧱 Architecture Summary
