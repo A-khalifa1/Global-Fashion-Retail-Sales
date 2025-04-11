@@ -16,7 +16,7 @@ The goal is to build a dual-pipeline system that:
 - Presents both views via **dedicated dashboards**.
 
 
-  Global-Fashion-Retail-Sales/diagram.png
+  ![diagram](diagram.png)
 
 ---
 
