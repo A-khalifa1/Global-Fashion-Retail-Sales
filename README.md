@@ -161,7 +161,7 @@ This architecture is Lambda-Inspired, but instead of unifying batch and streamin
 
 # Launch Streamlit dashboard:
 
-    streamlit run streamlit_app.py
+    python -m streamlit run dash2.py
 
  ##  Batch Layer:
 
