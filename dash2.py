@@ -139,7 +139,7 @@ for message in consumer:
 
         # Transliterate employee names to Latin letters
         top_cashiers["Name"] = top_cashiers["Name"].apply(lambda x: unidecode.unidecode(x))
-
+        
         with placeholder.container():
             # KPIs
             st.subheader("📊 KPIs")
@@ -196,9 +196,39 @@ for message in consumer:
             if not top_cashiers.empty:
                 st.subheader("💼 Top 5 Cashiers with the Largest Bill")
                 st.dataframe(top_cashiers[['Employee ID', 'Name', 'Invoice Total (USD)']], use_container_width=True)
+       # discount analysis
+            st.subheader("🎯 Discount Insights")
+
+            discount_summary = df.groupby("Discount").agg({
+                "Invoice Total (USD)": "sum",
+                "Quantity": "sum",
+                "Invoice ID": "nunique"
+            }).reset_index().rename(columns={
+                "Invoice Total (USD)": "Total Sales (USD)",
+                "Quantity": "Total Quantity",
+                "Invoice ID": "Transaction Count"
+            })
+
+            st.dataframe(discount_summary, use_container_width=True)
+
+            # discounts and total sales
+            discount_chart = alt.Chart(discount_summary).mark_bar(color="#87CEFA").encode(
+                x=alt.X("Discount:O", title="Discount Rate"),
+                y=alt.Y("Total Sales (USD):Q", title="Total Sales in USD"),
+                tooltip=["Discount", "Total Sales (USD)", "Transaction Count"]
+            ).properties(
+                title="🛒 Total Sales by Discount Rate",
+                width=600,
+                height=400
+            )
+
+            st.altair_chart(discount_chart, use_container_width=True)
 
             st.subheader("🧾 Latest Transactions")
             st.dataframe(df.tail(20), use_container_width=True)
+
+             
+
 
     else:
         st.warning("No data received from Kafka yet.")
