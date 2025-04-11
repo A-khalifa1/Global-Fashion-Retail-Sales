@@ -7,11 +7,11 @@ import pyodbc
 import unidecode  # For transliterating non-Latin characters
 
 # Kafka Configuration
-KAFKA_TOPIC = "your_topic"
+KAFKA_TOPIC = "skippy"
 KAFKA_BOOTSTRAP_SERVERS = "localhost:9092"
 
 st.set_page_config(page_title="Live Kafka Stream Dashboard", layout="wide")
-st.title("📡 Live Fashion Sales Dashboard")
+st.title("📡 Skippy Live")
 st.markdown(f"Listening to Kafka topic: `{KAFKA_TOPIC}`")
 
 # SQL Server connection
@@ -20,10 +20,10 @@ def get_store_data():
     conn = pyodbc.connect(
         r"Driver={ODBC Driver 17 for SQL Server};"
         r"Server=DESKTOP-GU1M2GE\SQLEXPRESS;"
-        r"Database=fashion;"
+        r"Database=Skippy;"
         r"Trusted_Connection=yes;"
     )
-    query = "SELECT Store_ID, Country, City FROM dbo.stores"
+    query = "SELECT [Store ID], Country, City FROM dbo.stores"
     return pd.read_sql(query, conn)
 
 @st.cache_resource
@@ -31,10 +31,10 @@ def get_product_data():
     conn = pyodbc.connect(
         r"Driver={ODBC Driver 17 for SQL Server};"
         r"Server=DESKTOP-GU1M2GE\SQLEXPRESS;"
-        r"Database=fashion;"
+        r"Database=Skippy;"
         r"Trusted_Connection=yes;"
     )
-    query = "SELECT Product_ID, Description_EN FROM dbo.products"
+    query = "SELECT [Product ID], [Description EN] FROM dbo.products"  # Corrected query here
     return pd.read_sql(query, conn)
 
 @st.cache_resource
@@ -42,10 +42,10 @@ def get_employee_data():
     conn = pyodbc.connect(
         r"Driver={ODBC Driver 17 for SQL Server};"
         r"Server=DESKTOP-GU1M2GE\SQLEXPRESS;"
-        r"Database=fashion;"
+        r"Database=Skippy;"
         r"Trusted_Connection=yes;"
     )
-    query = "SELECT Employee_ID, Name FROM dbo.employees"
+    query = "SELECT [Employee ID], Name FROM dbo.employees"
     return pd.read_sql(query, conn)
 
 # Load store, product, and employee data
@@ -53,9 +53,9 @@ store_df = get_store_data()
 product_df = get_product_data()
 employee_df = get_employee_data()
 
-store_df["Store_ID"] = store_df["Store_ID"].astype(str)
-product_df["Product_ID"] = product_df["Product_ID"].astype(str)
-employee_df["Employee_ID"] = employee_df["Employee_ID"].astype(str)
+store_df["Store ID"] = store_df["Store ID"].astype(str)
+product_df["Product ID"] = product_df["Product ID"].astype(str)
+employee_df["Employee ID"] = employee_df["Employee ID"].astype(str)
 
 # Define currency exchange rates to USD
 exchange_rates = {
@@ -101,7 +101,7 @@ for message in consumer:
         df["Store ID"] = df["Store ID"].astype(str)
 
         # Merge store metadata
-        df = df.merge(store_df, left_on="Store ID", right_on="Store_ID", how="left")
+        df = df.merge(store_df, left_on="Store ID", right_on="Store ID", how="left")
 
         # Convert Invoice Total to USD based on the currency
         def convert_to_usd(row):
@@ -123,18 +123,18 @@ for message in consumer:
         top_cashiers = df.groupby("Employee ID")["Invoice Total (USD)"].sum().reset_index().sort_values(by="Invoice Total (USD)", ascending=False).head(5)
 
         # Merge product descriptions into top_sold_products
-        top_sold_products = top_sold_products.merge(product_df[['Product_ID', 'Description_EN']], 
+        top_sold_products = top_sold_products.merge(product_df[['Product ID', 'Description EN']], 
                                                    left_on="Product ID", 
-                                                   right_on="Product_ID", 
+                                                   right_on="Product ID", 
                                                    how="left")
 
         # Rename Description_EN column to Product
-        top_sold_products.rename(columns={"Description_EN": "Product"}, inplace=True)
+        top_sold_products.rename(columns={"Description EN": "Product"}, inplace=True)
 
         # Merge employee names into top_cashiers
-        top_cashiers = top_cashiers.merge(employee_df[['Employee_ID', 'Name']], 
+        top_cashiers = top_cashiers.merge(employee_df[['Employee ID', 'Name']], 
                                           left_on="Employee ID", 
-                                          right_on="Employee_ID", 
+                                          right_on="Employee ID", 
                                           how="left")
 
         # Transliterate employee names to Latin letters
@@ -159,7 +159,7 @@ for message in consumer:
                 st.altair_chart(sales_chart, use_container_width=True)
 
             if not city_sales.empty:
-                st.subheader("🌆 Sales by City (Column Chart)")
+                st.subheader("🌆 Top 5 Cities (Column Chart)")
                 top_cities = city_sales.head(5)
                 column_chart_city = alt.Chart(top_cities).mark_bar().encode(
                     y=alt.Y("City:N", sort="-y", title="City"),
@@ -173,8 +173,8 @@ for message in consumer:
                 st.subheader("🌍 Top 5 Countries by Sales (Bar)")
                 top_countries = country_sales.head(5)
                 bar_chart = alt.Chart(top_countries).mark_bar().encode(
-                    x=alt.X("Country:N", title="Country"),
-                    y=alt.Y("Invoice Total (USD):Q", title="Sales in USD"),
+                    y=alt.Y("Country:N", title="Country"),
+                    x=alt.X("Invoice Total (USD):Q", title="Sales in USD"),
                     tooltip=["Country", "Invoice Total (USD)"],
                     color="Country:N"
                 )
@@ -186,7 +186,7 @@ for message in consumer:
 
             if not top_cashiers.empty:
                 st.subheader("💼 Top 5 Cashiers with the Largest Bill")
-                st.dataframe(top_cashiers[['Employee_ID', 'Name', 'Invoice Total (USD)']], use_container_width=True)
+                st.dataframe(top_cashiers[['Employee ID', 'Name', 'Invoice Total (USD)']], use_container_width=True)
 
             st.subheader("🧾 Latest Transactions")
             st.dataframe(df.tail(20), use_container_width=True)
