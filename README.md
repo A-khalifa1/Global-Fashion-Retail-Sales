@@ -92,3 +92,82 @@ This solution adopts a **Lambda-Inspired Architecture**, split into two separate
               ┌────────────┐
               │ Streamlit  │◄──────── Real-time Dashboard
               └────────────┘
+```
+
+## 📂 Project Structure
+
+📁 batch/
+   ├── SQL Scripts
+   ├── SSIS Packages
+   └── Power BI Reports (.pbix)
+
+📁 streaming/
+   ├── producer.py
+   ├── consumer.py
+   └── streamlit_app.py
+
+📁 kafka/
+   └── docker-compose.yml
+
+📁 data/
+   ├── sample_source.csv
+   └── live_transactions.csv (stream output)
+
+
+## 🛠️ Tools & Technologies
+Microsoft SQL Server – source & warehouse
+
+SSIS – batch ETL pipeline
+
+Apache Kafka (Docker) – real-time messaging
+
+Python – Kafka producer, consumer, Streamlit app
+
+Power BI – analytical dashboard
+
+Streamlit – real-time dashboard
+
+
+## 📊 Dashboards
+
+  Power BI: Country-wise trends, product sales, revenue analysis (based on historical warehouse).
+
+  Streamlit: Real-time view of incoming transactions, KPIs, and live metrics
+
+## 🔀 Design Note
+This architecture is Lambda-Inspired, but instead of unifying batch and streaming into one serving layer, the system uses:
+
+   Two separated dashboards for better performance and clarity.
+
+  A clear distinction between historical insights (Power BI) and real-time metrics (Streamlit)
+
+## 🚀 How to Run
+
+
+ #  Start Kafka Mini:
+
+    docker-compose up -d
+
+# Run the Kafka Producer (simulated cashier stream):
+
+    python producer.py
+
+# Start the Kafka Consumer (writes to CSV):
+
+    python consumer.py
+
+# Launch Streamlit dashboard:
+
+    streamlit run streamlit_app.py
+
+ ##  Batch Layer:
+
+   Use SSIS to transfer data from SQL Server to warehouse.
+
+   Open .pbix file in Power BI to view historical analysis.
+
+## 🧠 Notes
+
+   Deduplication and error handling are considered in the consumer to prevent inflated numbers.
+
+   This setup is ideal for prototyping real-time pipelines before scaling to full cloud-based solutions
