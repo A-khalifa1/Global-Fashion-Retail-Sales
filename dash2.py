@@ -158,27 +158,36 @@ for message in consumer:
                 ).interactive()
                 st.altair_chart(sales_chart, use_container_width=True)
 
-            if not city_sales.empty:
-                st.subheader("🌆 Top 5 Cities (Column Chart)")
-                top_cities = city_sales.head(5)
-                column_chart_city = alt.Chart(top_cities).mark_bar().encode(
-                    y=alt.Y("City:N", sort="-y", title="City"),
-                    x=alt.X("Invoice Total (USD):Q", title="Sales in USD"),
-                    tooltip=["City", "Invoice Total (USD)"],
-                    color=alt.Color("City:N", legend=None)
-                ).properties(width=800, height=400)
-                st.altair_chart(column_chart_city, use_container_width=True)
+            if not city_sales.empty or not country_sales.empty:
+                st.subheader("🌍 Sales by City and Country")
 
-            if not country_sales.empty:
-                st.subheader("🌍 Top 5 Countries by Sales (Bar)")
-                top_countries = country_sales.head(5)
-                bar_chart = alt.Chart(top_countries).mark_bar().encode(
-                    y=alt.Y("Country:N", title="Country"),
-                    x=alt.X("Invoice Total (USD):Q", title="Sales in USD"),
-                    tooltip=["Country", "Invoice Total (USD)"],
-                    color="Country:N"
-                )
-                st.altair_chart(bar_chart, use_container_width=True)
+                # Create two columns for city and country charts
+                col1, col2 = st.columns(2)
+
+                # City chart
+                if not city_sales.empty:
+                    col1.subheader("🌆 Top 5 Cities by Sales")
+                    top_cities = city_sales.head(5)
+                    column_chart_city = alt.Chart(top_cities).mark_bar(color="#40E0D0").encode(
+                        y=alt.Y("City:N", sort="-y", title="City"),
+                        x=alt.X("Invoice Total (USD):Q", title="Sales in USD"),
+                        tooltip=["City", "Invoice Total (USD)"]
+                    ).properties(width=350, height=400)
+
+                    # Adjusted width to fit side by side
+                    col1.altair_chart(column_chart_city, use_container_width=True)
+
+                # Country chart
+                if not country_sales.empty:
+                    col2.subheader("🌍 Top 5 Countries by Sales")
+                    top_countries = country_sales.head(5)
+                    bar_chart = alt.Chart(top_countries).mark_bar(color="#DDA0DD").encode(
+                        y=alt.Y("Country:N", title="Country"),
+                        x=alt.X("Invoice Total (USD):Q", title="Sales in USD"),
+                        tooltip=["Country", "Invoice Total (USD)"]
+                    ).properties(width=350, height=400)
+                    # Adjusted width to fit side by side
+                    col2.altair_chart(bar_chart, use_container_width=True)
 
             if not top_sold_products.empty:
                 st.subheader("🔥 Top 7 Sold Products")
