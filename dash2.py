@@ -4,7 +4,8 @@ import json
 import pandas as pd
 import altair as alt
 import pyodbc
-import unidecode  # For transliterating non-Latin characters
+import plotly.express as px
+import unidecode
 
 # Kafka Configuration
 KAFKA_TOPIC = "skippy"
@@ -23,8 +24,7 @@ def get_store_data():
         r"Database=Skippy;"
         r"Trusted_Connection=yes;"
     )
-    query = "SELECT [Store ID], Country, City FROM dbo.stores"
-    return pd.read_sql(query, conn)
+    return pd.read_sql("SELECT [Store ID], [Store Name], Country, City FROM dbo.stores", conn)
 
 @st.cache_resource
 def get_product_data():
@@ -34,8 +34,7 @@ def get_product_data():
         r"Database=Skippy;"
         r"Trusted_Connection=yes;"
     )
-    query = "SELECT [Product ID], [Description EN] FROM dbo.products"  # Corrected query here
-    return pd.read_sql(query, conn)
+    return pd.read_sql("SELECT [Product ID], [Description EN] FROM dbo.products", conn)
 
 @st.cache_resource
 def get_employee_data():
@@ -45,10 +44,9 @@ def get_employee_data():
         r"Database=Skippy;"
         r"Trusted_Connection=yes;"
     )
-    query = "SELECT [Employee ID], Name FROM dbo.employees"
-    return pd.read_sql(query, conn)
+    return pd.read_sql("SELECT [Employee ID], Name FROM dbo.employees", conn)
 
-# Load store, product, and employee data
+# Load metadata
 store_df = get_store_data()
 product_df = get_product_data()
 employee_df = get_employee_data()
@@ -57,15 +55,14 @@ store_df["Store ID"] = store_df["Store ID"].astype(str)
 product_df["Product ID"] = product_df["Product ID"].astype(str)
 employee_df["Employee ID"] = employee_df["Employee ID"].astype(str)
 
-# Define currency exchange rates to USD
 exchange_rates = {
     "USD": 1,
-    "EUR": 1 / 0.92,   # 1 EUR to USD
-    "CNY": 1 / 6.45,   # 1 CNY to USD
-    "GBP": 1 / 0.82    # 1 GBP to USD
+    "EUR": 1 / 0.92,
+    "CNY": 1 / 6.45,
+    "GBP": 1 / 0.82
 }
 
-# Kafka Consumer setup
+# Kafka Consumer
 try:
     consumer = KafkaConsumer(
         KAFKA_TOPIC,
@@ -100,18 +97,12 @@ for message in consumer:
         df["Time"] = df.get("Time")
         df["Store ID"] = df["Store ID"].astype(str)
 
-        # Merge store metadata
-        df = df.merge(store_df, left_on="Store ID", right_on="Store ID", how="left")
+        df = df.merge(store_df, on="Store ID", how="left")
 
-        # Convert Invoice Total to USD based on the currency
-        def convert_to_usd(row):
-            currency = row["Currency"]
-            if currency in exchange_rates:
-                return row["Invoice Total"] * exchange_rates[currency]
-            else:
-                return row["Invoice Total"]
-
-        df["Invoice Total (USD)"] = df.apply(convert_to_usd, axis=1)
+        df["Invoice Total (USD)"] = df.apply(
+            lambda row: row["Invoice Total"] * exchange_rates.get(row["Currency"], 1),
+            axis=1
+        )
 
         total_sales = df["Invoice Total (USD)"].sum()
         total_quantity = df["Quantity"].sum()
@@ -120,34 +111,29 @@ for message in consumer:
         country_sales = df.groupby("Country")["Invoice Total (USD)"].sum().reset_index().sort_values(by="Invoice Total (USD)", ascending=False)
 
         top_sold_products = df.groupby("Product ID")["Quantity"].sum().reset_index().sort_values(by="Quantity", ascending=False).head(7)
-        top_cashiers = df.groupby("Employee ID")["Invoice Total (USD)"].sum().reset_index().sort_values(by="Invoice Total (USD)", ascending=False).head(5)
-
-        # Merge product descriptions into top_sold_products
-        top_sold_products = top_sold_products.merge(product_df[['Product ID', 'Description EN']], 
-                                                   left_on="Product ID", 
-                                                   right_on="Product ID", 
-                                                   how="left")
-
-        # Rename Description_EN column to Product
+        top_sold_products = top_sold_products.merge(product_df, on="Product ID", how="left")
         top_sold_products.rename(columns={"Description EN": "Product"}, inplace=True)
 
-        # Merge employee names into top_cashiers
-        top_cashiers = top_cashiers.merge(employee_df[['Employee ID', 'Name']], 
-                                          left_on="Employee ID", 
-                                          right_on="Employee ID", 
-                                          how="left")
-
-        # Transliterate employee names to Latin letters
+        top_cashiers = df.groupby("Employee ID")["Invoice Total (USD)"].sum().reset_index().sort_values(by="Invoice Total (USD)", ascending=False).head(5)
+        top_cashiers = top_cashiers.merge(employee_df, on="Employee ID", how="left")
         top_cashiers["Name"] = top_cashiers["Name"].apply(lambda x: unidecode.unidecode(x))
-        
+
+        payment_method_sales = df.groupby("Payment Method")["Invoice Total (USD)"].sum().reset_index()
+        payment_method_dist = df['Payment Method'].value_counts().reset_index()
+        payment_method_dist.columns = ['Payment Method', 'Count']
+
+        discount_summary = df.groupby("Discount")["Invoice Total (USD)"].agg(
+            Total_Sales='sum',
+            Transaction_Count='count'
+        ).reset_index()
+        discount_summary["Discount"] = discount_summary["Discount"].apply(lambda x: "No Discount" if x == 0 else str(x))
+
         with placeholder.container():
-            # KPIs
             st.subheader("📊 KPIs")
             col1, col2 = st.columns(2)
             col1.metric("Total Sales (USD)", f"${total_sales:,.2f}")
             col2.metric("Total Quantity", f"{total_quantity:,}")
 
-            # Charts
             if not df["Time"].isna().all():
                 st.subheader("📈 Sales Over Time")
                 df["Time"] = pd.to_datetime(df["Time"], format="%H:%M:%S", errors="coerce").dt.time
@@ -160,75 +146,61 @@ for message in consumer:
 
             if not city_sales.empty or not country_sales.empty:
                 st.subheader("🌍 Sales by City and Country")
-
-                # Create two columns for city and country charts
                 col1, col2 = st.columns(2)
 
-                # City chart
                 if not city_sales.empty:
                     col1.subheader("🌆 Top 5 Cities by Sales")
                     top_cities = city_sales.head(5)
-                    column_chart_city = alt.Chart(top_cities).mark_bar(color="#DDA0DD").encode(
-                        y=alt.Y("City:N", sort="-y", title="City"),
-                        x=alt.X("Invoice Total (USD):Q", title="Sales in USD"),
+                    chart_city = alt.Chart(top_cities).mark_bar(color="#DDA0DD").encode(
+                        y=alt.Y("City:N", sort="-y"),
+                        x=alt.X("Invoice Total (USD):Q"),
                         tooltip=["City", "Invoice Total (USD)"]
                     ).properties(width=350, height=400)
+                    col1.altair_chart(chart_city, use_container_width=True)
 
-                    # Adjusted width to fit side by side
-                    col1.altair_chart(column_chart_city, use_container_width=True)
-
-                # Country chart
                 if not country_sales.empty:
                     col2.subheader("🌍 Top 5 Countries by Sales")
                     top_countries = country_sales.head(5)
-                    bar_chart = alt.Chart(top_countries).mark_bar(color="#40E0D0").encode(
-                        y=alt.Y("Country:N", title="Country"),
-                        x=alt.X("Invoice Total (USD):Q", title="Sales in USD"),
+                    chart_country = alt.Chart(top_countries).mark_bar(color="#40E0D0").encode(
+                        y=alt.Y("Country:N"),
+                        x=alt.X("Invoice Total (USD):Q"),
                         tooltip=["Country", "Invoice Total (USD)"]
                     ).properties(width=350, height=400)
-                    # Adjusted width to fit side by side
-                    col2.altair_chart(bar_chart, use_container_width=True)
+                    col2.altair_chart(chart_country, use_container_width=True)
 
             if not top_sold_products.empty:
                 st.subheader("🔥 Top 7 Sold Products")
-                st.dataframe(top_sold_products[['Product ID', 'Product', 'Quantity']], use_container_width=True)
+                st.dataframe(top_sold_products[["Product ID", "Product", "Quantity"]], use_container_width=True)
 
             if not top_cashiers.empty:
                 st.subheader("💼 Top 5 Cashiers with the Largest Bill")
-                st.dataframe(top_cashiers[['Employee ID', 'Name', 'Invoice Total (USD)']], use_container_width=True)
-       # discount analysis
-            st.subheader("🎯 Discount Insights")
+                st.dataframe(top_cashiers[["Employee ID", "Name", "Invoice Total (USD)"]], use_container_width=True)
 
-            discount_summary = df.groupby("Discount").agg({
-                "Invoice Total (USD)": "sum",
-                "Quantity": "sum",
-                "Invoice ID": "nunique"
-            }).reset_index().rename(columns={
-                "Invoice Total (USD)": "Total Sales (USD)",
-                "Quantity": "Total Quantity",
-                "Invoice ID": "Transaction Count"
-            })
-
+            st.subheader("💸 Sales by Discount")
             st.dataframe(discount_summary, use_container_width=True)
 
-            # discounts and total sales
             discount_chart = alt.Chart(discount_summary).mark_bar(color="#87CEFA").encode(
                 x=alt.X("Discount:O", title="Discount Rate"),
-                y=alt.Y("Total Sales (USD):Q", title="Total Sales in USD"),
-                tooltip=["Discount", "Total Sales (USD)", "Transaction Count"]
+                y=alt.Y("Total_Sales:Q", title="Total Sales in USD"),
+                tooltip=["Discount", "Total_Sales", "Transaction_Count"]
             ).properties(
-                title="🛒 Total Sales by Discount Rate",
+                title="🛍️ Total Sales by Discount Rate",
                 width=600,
                 height=400
             )
-
             st.altair_chart(discount_chart, use_container_width=True)
+
+            st.subheader("💳 Payment Method Distribution")
+            payment_method_pie = px.pie(
+                payment_method_sales,
+                names="Payment Method",
+                values="Invoice Total (USD)",
+                title="💳 Payment Method Distribution"
+            )
+            st.plotly_chart(payment_method_pie, use_container_width=True)
+
 
             st.subheader("🧾 Latest Transactions")
             st.dataframe(df.tail(20), use_container_width=True)
-
-             
-
-
     else:
         st.warning("No data received from Kafka yet.")
