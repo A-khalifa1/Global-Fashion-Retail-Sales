@@ -168,7 +168,7 @@ for message in consumer:
                 if not city_sales.empty:
                     col1.subheader("🌆 Top 5 Cities by Sales")
                     top_cities = city_sales.head(5)
-                    column_chart_city = alt.Chart(top_cities).mark_bar(color="#40E0D0").encode(
+                    column_chart_city = alt.Chart(top_cities).mark_bar(color="#DDA0DD").encode(
                         y=alt.Y("City:N", sort="-y", title="City"),
                         x=alt.X("Invoice Total (USD):Q", title="Sales in USD"),
                         tooltip=["City", "Invoice Total (USD)"]
@@ -181,7 +181,7 @@ for message in consumer:
                 if not country_sales.empty:
                     col2.subheader("🌍 Top 5 Countries by Sales")
                     top_countries = country_sales.head(5)
-                    bar_chart = alt.Chart(top_countries).mark_bar(color="#DDA0DD").encode(
+                    bar_chart = alt.Chart(top_countries).mark_bar(color="#40E0D0").encode(
                         y=alt.Y("Country:N", title="Country"),
                         x=alt.X("Invoice Total (USD):Q", title="Sales in USD"),
                         tooltip=["Country", "Invoice Total (USD)"]
