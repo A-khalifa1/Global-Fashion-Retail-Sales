@@ -188,14 +188,15 @@ for message in consumer:
                 width=600,
                 height=400
             )
-            # store analysis
+            # دمج بيانات المبيعات مع بيانات المحلات للحصول على أسماء المحلات
             store_sales = df.groupby("Store ID")["Invoice Total (USD)"].sum().reset_index()
+            store_sales = store_sales.merge(store_df[["Store ID", "Store Name"]], on="Store ID", how="left")
 
             # store sales chart
             store_sales_chart = alt.Chart(store_sales).mark_bar(color="#40E0D0").encode(
                 x=alt.X("Invoice Total (USD):Q", title="Total Sales in USD"),
-                y=alt.Y("Store ID:N", title="Store ID", sort="-x"),
-                tooltip=["Store ID", "Invoice Total (USD)"]
+                y=alt.Y("Store Name:N", title="Store Name", sort="-x"),  # هنا بنعرض اسم المحل
+                tooltip=["Store Name", "Invoice Total (USD)"]
             ).properties(
                 title="🏬 Store Sales Comparison",
                 width=600,
