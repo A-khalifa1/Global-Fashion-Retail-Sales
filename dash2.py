@@ -188,6 +188,21 @@ for message in consumer:
                 width=600,
                 height=400
             )
+            # store analysis
+            store_sales = df.groupby("Store ID")["Invoice Total (USD)"].sum().reset_index()
+
+            # store sales chart
+            store_sales_chart = alt.Chart(store_sales).mark_bar(color="#40E0D0").encode(
+                x=alt.X("Invoice Total (USD):Q", title="Total Sales in USD"),
+                y=alt.Y("Store ID:N", title="Store ID", sort="-x"),
+                tooltip=["Store ID", "Invoice Total (USD)"]
+            ).properties(
+                title="🏬 Store Sales Comparison",
+                width=600,
+                height=400
+            )
+            st.subheader("🏬 Store Sales Comparison")
+            st.altair_chart(store_sales_chart, use_container_width=True)
             st.altair_chart(discount_chart, use_container_width=True)
 
             st.subheader("💳 Payment Method Distribution")
