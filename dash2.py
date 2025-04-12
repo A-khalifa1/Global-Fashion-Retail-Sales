@@ -12,6 +12,7 @@ KAFKA_TOPIC = "skippy"
 KAFKA_BOOTSTRAP_SERVERS = "localhost:9092"
 
 st.set_page_config(page_title="Live Kafka Stream Dashboard", layout="wide")
+st.image("logo.png", width=230) 
 st.title("📡 Skippy Live")
 st.markdown(f"Listening to Kafka topic: `{KAFKA_TOPIC}`")
 
