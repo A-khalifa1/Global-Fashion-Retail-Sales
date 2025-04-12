@@ -188,7 +188,7 @@ for message in consumer:
                 width=600,
                 height=400
             )
-            # دمج بيانات المبيعات مع بيانات المحلات للحصول على أسماء المحلات
+            # join store names and id
             store_sales = df.groupby("Store ID")["Invoice Total (USD)"].sum().reset_index()
             store_sales = store_sales.merge(store_df[["Store ID", "Store Name"]], on="Store ID", how="left")
             top_store_sales = store_sales.sort_values(by="Invoice Total (USD)", ascending=False).head(7)
